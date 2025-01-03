@@ -66,6 +66,7 @@ const LineEditor: React.FC<LineEditorProps> = ({ shape, index, updateShape, dele
 				type="number"
 				name="thickness"
 				value={shape.thickness || ""}
+				min={1}
 				onChange={handleChange}
 				className="mb-2 p-2 border rounded w-full"
 			/>

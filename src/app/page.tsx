@@ -13,6 +13,7 @@ import {
 	saveLine,
 	saveRectangle,
 } from "./functions";
+import CopySpan from "./components/CopySpan";
 
 const App: React.FC = () => {
 	const [shapes, setShapes] = useState<Shape[]>([
@@ -22,7 +23,7 @@ const App: React.FC = () => {
 			y: -2,
 			color: "#FFFFFF",
 			radius: 3,
-			name: "Default Circle",
+			name: "Default",
 		},
 	]);
 
@@ -30,6 +31,8 @@ const App: React.FC = () => {
 	const handleNewTypeSelected = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		setNewType(e.target.value as ShapeNames);
 	};
+
+	const [exportString, setExportString] = useState("");
 
 	const addShape = () => {
 		let newShape;
@@ -54,7 +57,7 @@ const App: React.FC = () => {
 			if (shape.type == "circle") expString += saveCircle(shape);
 		}
 
-		console.log(expString);
+		setExportString(expString);
 	};
 
 	const updateShape = (index: number, updatedShape: Shape) => {
@@ -127,6 +130,7 @@ const App: React.FC = () => {
 					>
 						Export to String
 					</button>
+					<CopySpan text={exportString} setExportString={setExportString} />
 				</div>
 			</div>
 		</div>

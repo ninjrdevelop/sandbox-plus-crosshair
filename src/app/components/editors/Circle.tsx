@@ -49,6 +49,7 @@ const CircleEditor: React.FC<CircleEditorProps> = ({ shape, index, updateShape, 
 			<input
 				type="number"
 				name="radius"
+				min={1}
 				value={shape.radius || ""}
 				onChange={handleChange}
 				className="mb-2 p-2 border rounded w-full"

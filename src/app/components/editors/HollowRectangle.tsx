@@ -71,6 +71,7 @@ const HollowRectangleEditor: React.FC<HollowRectangleEditorProps> = ({
 				type="number"
 				name="thickness"
 				value={shape.thickness || ""}
+				min={1}
 				onChange={handleChange}
 				className="mb-2 p-2 border rounded w-full"
 			/>

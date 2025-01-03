@@ -5,9 +5,11 @@ type CanvasProps = {
 	shapes: Shape[];
 };
 
+const images = ["images/bricks.jpg", "images/grass.jpg", "images/pavement.jpg"];
+
 const Canvas: React.FC<CanvasProps> = ({ shapes }) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
-	const [backgroundImage, setBackgroundImage] = useState<string>("");
+	const [backgroundImage, setBackgroundImage] = useState<string>("images/bricks.jpg");
 
 	useEffect(() => {
 		const canvas = canvasRef.current;
@@ -43,8 +45,8 @@ const Canvas: React.FC<CanvasProps> = ({ shapes }) => {
 						);
 					} else if (shape.type === "circle") {
 						ctx.arc(
-							canvasCenterX + shape.x,
-							canvasCenterY + shape.y,
+							canvasCenterX + shape.x - shape.radius / 2,
+							canvasCenterY + shape.y - shape.radius / 2,
 							shape.radius,
 							0,
 							Math.PI * 2
@@ -83,24 +85,17 @@ const Canvas: React.FC<CanvasProps> = ({ shapes }) => {
 	return (
 		<div>
 			<div>
-				<button
-					onClick={() => setBackgroundImage("images/bricks.jpg")}
-					className="bg-blue-500 text-white p-2 ml-1 w-auto hover:bg-blue-600"
-				>
-					Background 1
-				</button>
-				<button
-					onClick={() => setBackgroundImage("images/grass.jpg")}
-					className="bg-blue-500 text-white p-2 ml-1 w-auto hover:bg-blue-600"
-				>
-					Background 2
-				</button>
-				<button
-					onClick={() => setBackgroundImage("images/pavement.jpg")}
-					className="bg-blue-500 text-white p-2 ml-1 w-auto hover:bg-blue-600"
-				>
-					Background 3
-				</button>
+				{images.map((name) => (
+					<button
+						onClick={() => setBackgroundImage(name)}
+						className={`${
+							backgroundImage == name ? "bg-blue-700" : "bg-blue-500"
+						} text-white p-2 ml-1 w-auto hover:bg-blue-600`}
+						key={name}
+					>
+						{name.replaceAll("images/", "").replaceAll(".jpg", "")}
+					</button>
+				))}
 			</div>
 			<canvas ref={canvasRef} width={500} height={500} className="border shadow-lg" />
 		</div>
