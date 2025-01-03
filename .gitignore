@@ -1,7 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-!dockerfile
-
 # dependencies
 /node_modules
 /.pnp
@@ -21,15 +19,6 @@
 # misc
 .DS_Store
 *.pem
-__pycache__/
-timesheet.md
-*.code-workspace
-.venv/
-venv/
-temp/
-
-monitor/test.py
-monitor/test*.txt
 
 # debug
 npm-debug.log*
@@ -45,5 +34,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-certificates
